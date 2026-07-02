@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rice Leaf Disease Detection</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef') no-repeat center center/cover;
+        }
+
+        .container{
+            width:90%;
+            max-width:700px;
+            background: rgba(255,255,255,0.95);
+            padding:40px;
+            border-radius:20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align:center;
+        }
+
+        h1{
+            font-size:28px;
+            color:#2e7d32;
+            margin-bottom:20px;
+        }
+
+        .upload-box{
+            margin:20px 0;
+        }
+
+        input[type="file"]{
+            padding:10px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            width:100%;
+        }
+
+        button{
+            margin-top:20px;
+            padding:12px 30px;
+            background:#2e7d32;
+            color:white;
+            border:none;
+            border-radius:30px;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#1b5e20;
+            transform:scale(1.05);
+        }
+
+        .result-box{
+            margin-top:30px;
+            padding:20px;
+            border-radius:15px;
+            background:#e8f5e9;
+            box-shadow:0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .result-box h2{
+            color:#1b5e20;
+            font-weight:600;
+        }
+
+        .image-preview{
+            margin-top:20px;
+        }
+
+        .image-preview img{
+            width:300px;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        footer{
+            margin-top:20px;
+            font-size:14px;
+            color:#555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌾 Rice Leaf Disease Classification (ViT Model)</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div class="upload-box">
+            <input type="file" name="file" required>
+        </div>
+        <button type="submit">Predict Disease</button>
+    </form>
+
+    {% if image_path %}
+    <div class="image-preview">
+        <h3>Uploaded Image</h3>
+        <img src="{{ image_path }}">
+    </div>
+    {% endif %}
+
+    {% if prediction %}
+    <div class="result-box">
+        <h2>Prediction Result:</h2>
+        <h2>{{ prediction }}</h2>
+    </div>
+    {% endif %}
+
+    <footer>
+        Developed using Vision Transformer (ViT) & Flask
+    </footer>
+
+</div>
+
+</body>
+</html>
